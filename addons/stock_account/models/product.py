@@ -314,7 +314,7 @@ class ProductProduct(models.Model):
         if company is None:
             company = self.env.company
         svls_to_vacuum = self.env['stock.valuation.layer'].sudo().search([
-            ('product_id', '=', self.id),
+            ('product_id', 'in', self.ids),
             ('remaining_qty', '<', 0),
             ('stock_move_id', '!=', False),
             ('company_id', '=', company.id),
