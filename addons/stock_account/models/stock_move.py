@@ -265,7 +265,9 @@ class StockMove(models.Model):
                 stock_valuation_layers |= getattr(todo_valued_moves, '_create_%s_svl' % valued_type)()
                 continue
 
-        for svl in stock_valuation_layers.with_context(active_test=False):
+#         for svl in stock_valuation_layers.with_context(active_test=False):
+        for svl in stock_valuation_layers:
+
             if not svl.product_id.valuation == 'real_time':
                 continue
             if svl.currency_id.is_zero(svl.value):
